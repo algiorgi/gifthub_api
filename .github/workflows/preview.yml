@@ -21,6 +21,4 @@ jobs:
       - name: Build
         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy
-        run: |
-          url="$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})"
-          vercel alias --token=${{ secrets.VERCEL_TOKEN }} set "$url" gifthub-api-preview.app
+        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
