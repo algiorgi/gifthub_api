@@ -1,0 +1,24 @@
+name: Integracion Continua
+on:
+  push:
+    branches-ignore:
+      - main
+jobs:
+  CI:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Instalar dependencias
+        run: npm ci
+      - name: Ejecutar Test Unitarios
+        run: npm run test:cov
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: cobertura
+          path: coverage/lcov-report
+          retention-days: 1
