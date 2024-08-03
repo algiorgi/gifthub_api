@@ -16,6 +16,8 @@ jobs:
         run: npm ci
       - name: Ejecutar Test Unitarios
         run: npm run test:cov
+      - name: Ejecutar e2e
+        run: npm run test:e2e
       - uses: actions/upload-artifact@v3
         if: always()
         with:
